@@ -51,6 +51,7 @@ export const categories: Category[] = [
     skills: [
       { name: "baseline-ui", description: "Apply a practical baseline for spacing, hierarchy, typography, primitives, responsive layout, and interaction states.", source: "ibelick/ui-skills" },
       { name: "emil-design-eng", description: "Apply Emil Kowalski's design-engineering approach to polish, component details, interaction, and animation decisions.", source: "emilkowalski/skill" },
+      { name: "review-animations", description: "Review motion work for timing, easing, sequencing, and overall animation polish.", source: "emilkowalski/skill" },
       { name: "fixing-accessibility", description: "Audit and fix keyboard navigation, focus behavior, labels, form errors, color contrast, and ARIA usage.", source: "ibelick/ui-skills" },
       { name: "fixing-metadata", description: "Audit and fix titles, descriptions, canonical URLs, social cards, favicons, structured data, and crawler directives.", source: "ibelick/ui-skills" },
       { name: "fixing-motion-performance", description: "Diagnose stuttering animation, layout thrashing, expensive visual effects, and scroll-linked motion.", source: "ibelick/ui-skills" },
