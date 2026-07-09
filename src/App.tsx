@@ -146,23 +146,6 @@ function CategorySection({ category }: { category: (typeof categories)[number] }
   )
 }
 
-function Footer() {
-  return (
-    <motion.footer
-      className="footer"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.5, ease: easeCustom }}
-    >
-      <p className="footer-text">
-        Curated by <a href="https://github.com/metaloozee">metaloozee</a>.
-        Skills are maintained by their respective upstream authors.
-      </p>
-    </motion.footer>
-  )
-}
-
 function TOC() {
   const [activeId, setActiveId] = useState('')
 
@@ -232,7 +215,6 @@ export default function App() {
           <TOC />
         </div>
       </div>
-      <Footer />
     </div>
   )
 }
