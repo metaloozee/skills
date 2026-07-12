@@ -146,6 +146,17 @@ function CategorySection({ category }: { category: (typeof categories)[number] }
   )
 }
 
+function Footer() {
+  return (
+    <footer className="footer">
+      by{' '}
+      <a href="https://github.com/metaloozee" target="_blank" rel="noreferrer">
+        metaloozee
+      </a>
+    </footer>
+  )
+}
+
 function TOC() {
   const [activeId, setActiveId] = useState('')
 
@@ -210,6 +221,7 @@ export default function App() {
               <CategorySection key={category.name} category={category} />
             ))}
           </div>
+          <Footer />
         </main>
         <div className="toc-col">
           <TOC />
