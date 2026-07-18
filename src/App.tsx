@@ -146,6 +146,20 @@ function CategorySection({ category }: { category: (typeof categories)[number] }
   )
 }
 
+function Footer() {
+  return (
+    <motion.footer
+      className="footer"
+      initial={{ opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, ease: easeCustom }}
+    >
+      <p>created by metaloozee</p>
+    </motion.footer>
+  )
+}
+
 function TOC() {
   const [activeId, setActiveId] = useState('')
 
@@ -210,6 +224,7 @@ export default function App() {
               <CategorySection key={category.name} category={category} />
             ))}
           </div>
+          <Footer />
         </main>
         <div className="toc-col">
           <TOC />

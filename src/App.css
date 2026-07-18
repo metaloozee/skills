@@ -221,6 +221,18 @@
   scroll-margin-top: 48px;
 }
 
+.footer {
+  margin-top: 80px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.footer p {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.8125rem;
+}
+
 .toc-col {
   display: none;
   grid-area: toc;
@@ -315,6 +327,11 @@
 
   .categories {
     gap: 48px;
+  }
+
+  .footer {
+    margin-top: 64px;
+    padding-top: 20px;
   }
 
   .category-head {
