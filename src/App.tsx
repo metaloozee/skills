@@ -236,7 +236,13 @@ function XIcon() {
 
 function Footer() {
   return (
-    <footer className="footer">
+    <motion.footer
+      className="footer"
+      initial={{ opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.5, ease: easeCustom }}
+    >
       <p className="footer-text">created by metaloozee</p>
       <div className="footer-links">
         <a
@@ -258,7 +264,7 @@ function Footer() {
           <XIcon />
         </a>
       </div>
-    </footer>
+    </motion.footer>
   )
 }
 
