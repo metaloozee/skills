@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type MouseEvent } from 'react'
 import { motion } from 'motion/react'
 import { Copy, Check } from 'lucide-react'
 import { categories } from './data/skills'
@@ -25,11 +25,22 @@ function Hero() {
 
 function InstallBlock() {
   const [copied, setCopied] = useState(false)
+  const [ripples, setRipples] = useState<{ id: number; x: number; y: number }[]>([])
 
-  const handleCopy = () => {
+  const handleCopy = (e: MouseEvent<HTMLButtonElement>) => {
     navigator.clipboard.writeText('npx skills add metaloozee/skills')
     setCopied(true)
     setTimeout(() => setCopied(false), 1500)
+
+    const rect = e.currentTarget.getBoundingClientRect()
+    const id = Date.now()
+    setRipples((prev) => [
+      ...prev,
+      { id, x: e.clientX - rect.left, y: e.clientY - rect.top },
+    ])
+    setTimeout(() => {
+      setRipples((prev) => prev.filter((r) => r.id !== id))
+    }, 500)
   }
 
   return (
@@ -42,25 +53,36 @@ function InstallBlock() {
       <h2 className="section-label">Install</h2>
       <div className="install-block">
         <code className="install-code">npx skills add metaloozee/skills</code>
-        <button
+        <motion.button
           type="button"
           className="install-copy"
           onClick={handleCopy}
           aria-label={copied ? 'Copied' : 'Copy install command'}
+          whileTap={{ scale: 0.88 }}
+          transition={{ type: 'spring', stiffness: 500, damping: 22 }}
         >
-          <span className="install-copy-vis">
-            <Copy
-              size={16}
-              className={copied ? 'install-copy-svg--hidden' : ''}
-              aria-hidden={copied}
+          {ripples.map((r) => (
+            <span
+              key={r.id}
+              className="install-copy-ripple"
+              style={{ left: r.x, top: r.y }}
+              aria-hidden="true"
             />
-            <Check
-              size={16}
-              className={copied ? '' : 'install-copy-svg--hidden'}
-              aria-hidden={!copied}
-            />
-          </span>
-        </button>
+          ))}
+          <motion.span
+            className="install-copy-vis"
+            key={copied ? 'check' : 'copy'}
+            initial={{ scale: 0.5, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ type: 'spring', stiffness: 520, damping: 18 }}
+          >
+            {copied ? (
+              <Check size={16} aria-hidden />
+            ) : (
+              <Copy size={16} aria-hidden />
+            )}
+          </motion.span>
+        </motion.button>
       </div>
     </motion.section>
   )
@@ -196,6 +218,50 @@ function TOC() {
   )
 }
 
+function GitHubIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+      <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
+    </svg>
+  )
+}
+
+function XIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.727-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" />
+    </svg>
+  )
+}
+
+function Footer() {
+  return (
+    <footer className="footer">
+      <p className="footer-text">created by metaloozee</p>
+      <div className="footer-links">
+        <a
+          href="https://github.com/metaloozee"
+          target="_blank"
+          rel="noreferrer"
+          className="footer-icon"
+          aria-label="GitHub"
+        >
+          <GitHubIcon />
+        </a>
+        <a
+          href="https://x.com/metaloozee"
+          target="_blank"
+          rel="noreferrer"
+          className="footer-icon"
+          aria-label="X"
+        >
+          <XIcon />
+        </a>
+      </div>
+    </footer>
+  )
+}
+
 export default function App() {
   return (
     <div className="page">
@@ -210,6 +276,7 @@ export default function App() {
               <CategorySection key={category.name} category={category} />
             ))}
           </div>
+          <Footer />
         </main>
         <div className="toc-col">
           <TOC />
