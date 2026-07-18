@@ -222,6 +222,10 @@
 }
 
 .footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
   margin-top: 80px;
   padding-top: 24px;
   border-top: 1px solid var(--border);
@@ -231,6 +235,44 @@
   color: var(--muted);
   font-family: var(--mono);
   font-size: 0.8125rem;
+}
+
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: var(--muted);
+  border-radius: 6px;
+  transition: color 0.2s var(--ease-out), background 0.2s var(--ease-out), transform 0.15s var(--ease-out);
+}
+
+.footer-link:hover {
+  color: var(--accent);
+  background: var(--accent-subtle);
+  text-decoration: none;
+}
+
+.footer-link:active {
+  transform: scale(0.97);
+}
+
+.footer-link:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.footer-link svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
 }
 
 .toc-col {
@@ -332,6 +374,11 @@
   .footer {
     margin-top: 64px;
     padding-top: 20px;
+  }
+
+  .footer-link {
+    width: 32px;
+    height: 32px;
   }
 
   .category-head {
