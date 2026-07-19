@@ -280,12 +280,12 @@ export default function App() {
               <CategorySection key={category.name} category={category} />
             ))}
           </div>
-          <Footer />
         </main>
         <div className="toc-col">
           <TOC />
         </div>
       </div>
+      <Footer />
     </motion.div>
   )
 }

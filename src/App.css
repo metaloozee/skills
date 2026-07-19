@@ -33,7 +33,7 @@
 
 .main {
   grid-area: content;
-  padding: 48px 24px 96px;
+  padding: 48px 24px 64px;
 }
 
 .hero {
@@ -167,8 +167,9 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  margin-top: 80px;
-  padding-top: 24px;
+  width: 100%;
+  margin-top: auto;
+  padding: 24px clamp(20px, 4vw, 48px);
   border-top: 1px solid var(--border);
 }
 
@@ -411,8 +412,7 @@
   }
 
   .footer {
-    margin-top: 56px;
-    padding-top: 20px;
+    padding-block: 20px;
   }
 }
 
