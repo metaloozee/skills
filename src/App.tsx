@@ -236,26 +236,28 @@ function XIcon() {
 function Footer() {
   return (
     <footer className="footer">
-      <p className="footer-credit">created by metaloozee</p>
-      <div className="footer-links">
-        <a
-          href="https://github.com/metaloozee"
-          target="_blank"
-          rel="noreferrer"
-          className="footer-icon"
-          aria-label="GitHub"
-        >
-          <GitHubIcon />
-        </a>
-        <a
-          href="https://x.com/metaloozee"
-          target="_blank"
-          rel="noreferrer"
-          className="footer-icon"
-          aria-label="X"
-        >
-          <XIcon />
-        </a>
+      <div className="footer-inner">
+        <p className="footer-credit">created by metaloozee</p>
+        <div className="footer-links">
+          <a
+            href="https://github.com/metaloozee"
+            target="_blank"
+            rel="noreferrer"
+            className="footer-icon"
+            aria-label="GitHub"
+          >
+            <GitHubIcon />
+          </a>
+          <a
+            href="https://x.com/metaloozee"
+            target="_blank"
+            rel="noreferrer"
+            className="footer-icon"
+            aria-label="X"
+          >
+            <XIcon />
+          </a>
+        </div>
       </div>
     </footer>
   )
@@ -269,8 +271,6 @@ export default function App() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: easeCustom }}
     >
-      <div className="fade-edge fade-edge--top" aria-hidden="true" />
-      <div className="fade-edge fade-edge--bottom" aria-hidden="true" />
       <div className="layout">
         <main className="main">
           <Hero />
